@@ -284,3 +284,24 @@ footer {
 iframe{
     width: 45%;
 }
+/* Position and size the video */
+.video-background video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 80%;
+  min-height: 80%;
+  width: auto;
+  height: auto;
+  z-index: -1; /* Places the video behind all other content */
+  object-fit: cover; /* Ensures the video covers the entire container without distortion */
+}
+
+/* Style the foreground content */
+.content {
+  position: relative;
+  z-index: 1; /* Ensures content is above the video */
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
