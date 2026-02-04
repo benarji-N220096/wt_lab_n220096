@@ -1,26 +1,35 @@
 <?php
-// show errors (very useful for beginners)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// include DB connection
 include "db.php";
 
 if (isset($_POST['login'])) {
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    if (strlen($email) < 8) {
+        die("Error: Email is too short");
+    }
+
+    if (strlen($password) < 6) {
+        die("Error: Password must be at least 6 characters");
+    }
+
+    $email = htmlspecialchars(strtolower($email));
+    $password = addslashes($password);
 
     $query = "INSERT INTO users (email, password)
               VALUES ('$email', '$password')";
 
     if (mysqli_query($conn, $query)) {
-        echo "<script>
-                alert('Signin details stored successfully');
-                window.location.href = 'index.html';
-              </script>";
+
+        echo "Registration Successful<br>";
+        print "User Email: $email";
+
     } else {
-        echo "Insert Error: " . mysqli_error($conn);
+        die("Database Error: " . mysqli_error($conn));
     }
 }
 ?>
