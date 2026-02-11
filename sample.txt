@@ -1,0 +1,2 @@
+New data written using w+ mode.
+Appended using a+ mode.
