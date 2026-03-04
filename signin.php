@@ -1,53 +1,65 @@
 <?php
-$message = "";   // message holder
+session_start();
+require __DIR__ . '/db.php';
 
-if (isset($_POST['login'])) {
+$message = "";
 
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $storedEmail = "n220096@rguktn.ac.in";
-    $storedPassword = "98765";
+    $email = trim($_POST['email'] ?? '');
+    $password = trim($_POST['password'] ?? '');
 
-    if (strcasecmp($email, $storedEmail) != 0) {
-        die("Login Failed: Invalid Email");
+    if (!$email || !$password) {
+        $message = "Email and password are required.";
     }
+    else {
 
-    if (strcmp($password, $storedPassword) != 0) {
-        die("Login Failed: Invalid Password");
+        $user = $users->findOne(['email' => $email]);
+
+        if (!$user) {
+            $message = "User not found.";
+        }
+        elseif (!password_verify($password, $user['password'])) {
+            $message = "Invalid password.";
+        }
+        else {
+            session_regenerate_id(true);
+            $_SESSION['user_id'] = (string)$user['_id'];
+            $_SESSION['email'] = $user['email'];
+
+            header("Location: dashboard.php");
+            exit;
+        }
     }
-
-    // If control reaches here → login success
-    $message = "Yes, successfully logged in!";
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>LearnHub | Login</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
 </head>
-<body class="login-body">
+<body>
 
-<div class="login-container">
-    <h2>Login</h2>
+<h2>Login</h2>
 
-    <!-- SUCCESS MESSAGE -->
-    <?php if ($message != "") { ?>
-        <p style="color: green; font-weight: bold;">
-            <?php echo $message; ?>
-        </p>
-    <?php } ?>
+<?php if ($message): ?>
+    <p style="color:red;"><?php echo $message; ?></p>
+<?php endif; ?>
 
-    <form method="post">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
+<form method="POST">
+    <input type="email" name="email" placeholder="Enter Email" required><br><br>
+    <input type="password" name="password" placeholder="Enter Password" required><br><br>
+    <button type="submit">Login</button>
+</form>
 
-        <button type="submit" name="login">signin</button>
-    </form>
-</div>
-
+<a href="signup.php">New user? Signup</a>
+<a href="google_login.php">signin with google</a>
+<hr>
+<a href="google_login.php">
+    <button style="background:#db4437;color:white;padding:10px 15px;border:none;border-radius:5px;">
+        Sign in with Google
+    </button>
+</a>
 </body>
 </html>

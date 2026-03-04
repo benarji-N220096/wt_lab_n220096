@@ -1,35 +1,62 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+session_start();
+require __DIR__ . '/db.php';
 
-include "db.php";
+$message = "";
 
-if (isset($_POST['login'])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+    $username = trim($_POST['username'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $password = trim($_POST['password'] ?? '');
 
-    if (strlen($email) < 8) {
-        die("Error: Email is too short");
+    if (!$username || !$email || !$password) {
+        $message = "All fields are required.";
     }
+    else {
 
-    if (strlen($password) < 6) {
-        die("Error: Password must be at least 6 characters");
-    }
+        $existingUser = $users->findOne(['email' => $email]);
 
-    $email = htmlspecialchars(strtolower($email));
-    $password = addslashes($password);
+        if ($existingUser) {
+            $message = "User already exists.";
+        }
+        else {
 
-    $query = "INSERT INTO users (email, password)
-              VALUES ('$email', '$password')";
+            // ⚠ Storing plain password (not secure)
+            $users->insertOne([
+                'username' => $username,
+                'email' => $email,
+                'password' => $password,
+                'createdAt' => new MongoDB\BSON\UTCDateTime()
+            ]);
 
-    if (mysqli_query($conn, $query)) {
-
-        echo "Registration Successful<br>";
-        print "User Email: $email";
-
-    } else {
-        die("Database Error: " . mysqli_error($conn));
+            $message = "Signup successful!";
+        }
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+</head>
+<body>
+
+<h2>Signup</h2>
+
+<?php if ($message): ?>
+    <p style="color:red;"><?php echo $message; ?></p>
+<?php endif; ?>
+
+<form method="POST"> 
+    <input type="text" name="usename" placeholder="Enter name" required><br><br>
+    <input type="email" name="email" placeholder="Enter Email" required><br><br>
+    <input type="password" name="password" placeholder="Enter Password" required><br><br>
+    <button type="submit">Signup</button>
+</form>
+
+<a href="signin.php">Already have account? Login</a>
+
+</body>
+</html>

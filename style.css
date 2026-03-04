@@ -2,306 +2,211 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-body {
-    background-color: #f5f5f5;
+/* Background Video */
+.video-background {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Navbar */
+/* .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+} */
+/* Navbar Layout Adjustment */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
-    background-color: #1f2937;
-    color: white;
+    padding: 20px 60px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
 }
 
-.navbar nav a {
-    margin-left: 20px;
-    color: white;
-    text-decoration: none;
-}
-
-.login {
-    background-color: #f97316;
-    padding: 6px 12px;
-    border-radius: 4px;
-}
-
-/* Hero */
-.hero {
-    height: 60vh;
-    background: url("images.jpg") center/cover no-repeat;
+nav {
     display: flex;
     align-items: center;
-    padding-left: 60px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #00f7ff;
+}
+
+/* Button Container */
+.nav-buttons {
+    margin-left: 30px;
+}
+
+/* Base Button Style */
+.btn {
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-left: 15px;
+    transition: 0.3s;
+}
+
+/* Signin Button */
+.signin-btn {
+    border: 2px solid #00f7ff;
+    color: #00f7ff;
+}
+
+.signin-btn:hover {
+    background: #00f7ff;
+    color: black;
+}
+
+/* Signup Button */
+.signup-btn {
+    background: #00f7ff;
+    color: black;
+}
+
+.signup-btn:hover {
+    background: white;
+    transform: translateY(-2px);
+}
+.logo {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #00f7ff;
+}
+
+.btn-nav {
+    padding: 8px 18px;
+    background: #00f7ff;
+    color: black;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     color: white;
 }
 
 .hero-content h2 {
-    font-size: 42px;
-    margin-bottom: 10px;
+    font-size: 50px;
+    margin-bottom: 20px;
 }
 
-.hero-content button {
-    padding: 10px 20px;
-    background-color: #f97316;
+.hero-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.btn-main {
+    padding: 12px 30px;
     border: none;
-    color: white;
+    background: #00f7ff;
+    color: black;
     font-size: 16px;
+    border-radius: 25px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
-/* Courses */
+.btn-main:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+/* Courses Section */
 .courses {
-    padding: 40px;
+    padding: 80px 10%;
+    background: white;
+    text-align: center;
+}
+
+.courses h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
 }
 
 .course-container {
     display: flex;
-    gap: 20px;
-    margin-top: 20px;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
 .course-card {
-    background-color: white;
-    width: 300px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    background: white;
+    width: 280px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.15);
+    transition: 0.3s;
 }
 
 .course-card img {
     width: 100%;
+    border-radius: 10px;
 }
 
 .course-card h3 {
-    padding: 10px;
+    margin: 15px 0 10px;
 }
 
-.course-card p,
 .course-card span {
-    padding: 0 10px 10px;
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #00bcd4;
 }
 
 .course-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
 }
 
 /* Footer */
 footer {
-    background-color: #1f2937;
-    color: white;
     text-align: center;
-    padding: 15px;
-}
-
-/* Login Page */
-.login-body {
-    height: 100vh;
-    background: linear-gradient(to right, #1f2937, #111827);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-container {
-    background-color: white;
-    width: 350px;
-    padding: 30px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.login-container h2 {
-    margin-bottom: 20px;
-}
-
-.login-container input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.login-container button {
-    width: 100%;
-    padding: 10px;
-    background-color: #f97316;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.login-container button:hover {
-    opacity: 0.9;
-}
-
-.login-container a {
-    color: #f97316;
-    text-decoration: none;
-}
-
-/* -------------------------- */
-/* Courses Page */
-.courses-page {
-    padding: 40px;
-}
-
-.courses-page h2 {
-    margin-bottom: 20px;
-}
-
-/* Grid layout for courses */
-.course-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-/* About Page */
-.about {
-    padding: 40px;
-    background-color: #f5f5f5;
-}
-
-.about h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.about p {
-    max-width: 800px;
-    margin: 0 auto 30px;
-    text-align: center;
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.about-cards {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.about-card {
-    background-color: white;
-    width: 300px;
     padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.about-card h3 {
-    margin-bottom: 10px;
-}
-/* Contact Page */
-.contact {
-    padding: 40px;
-    background-color: #f5f5f5;
-    text-align: center;
-}
-
-.contact p {
-    margin-bottom: 30px;
-}
-
-.contact-container {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.contact-form {
-    background-color: white;
-    padding: 25px;
-    width: 350px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.contact-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #f97316;
-    border: none;
+    background: black;
     color: white;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.contact-form button:hover {
-    opacity: 0.9;
-}
-
-.contact-info {
-    width: 300px;
-    text-align: left;
-}
-
-.contact-info h3 {
-    margin-bottom: 15px;
-}
-/* audio controls */
-.and{
-    background-color: blue;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    padding: 10px;
-    margin: 40px;
-    display: block;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-.or{
-    background-color: blue;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    padding: 10px;
-    margin: 40px;
-    display: block;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    width: 45%;
-    align-items: left;
-}
-iframe{
-    width: 45%;
-}
-/* Position and size the video */
-.video-background video {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 80%;
-  min-height: 80%;
-  width: auto;
-  height: auto;
-  z-index: -1; /* Places the video behind all other content */
-  object-fit: cover; /* Ensures the video covers the entire container without distortion */
-}
-
-/* Style the foreground content */
-.content {
-  position: relative;
-  z-index: 1; /* Ensures content is above the video */
-  color: white;
-  text-align: center;
-  padding: 20px;
 }

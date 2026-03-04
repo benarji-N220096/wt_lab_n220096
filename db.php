@@ -1,12 +1,13 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "learnhub";
+require __DIR__ . '/vendor/autoload.php';
 
-$conn = mysqli_connect($host, $user, $pass, $dbname);
+try {
+    $client = new MongoDB\Client("mongodb://localhost:27017");
 
-if (!$conn) {
-    die("Database connection failed: " . mysqli_connect_error());
+    $db = $client->learnhub;     // Database name
+    $users = $db->users;        // Collection name
+
+} catch (Exception $e) {
+    die("MongoDB Connection failed: " . $e->getMessage());
 }
-?>
+?> 
