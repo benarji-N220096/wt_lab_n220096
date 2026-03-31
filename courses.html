@@ -1,64 +1,220 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Courses | LearnHub</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Courses | LearnHub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/main.js" defer></script>
+    <style>
+        .courses-page { padding: 120px 5% 100px; background: #f8fafc; }
+        .page-header { text-align: center; margin-bottom: 4rem; }
+        .page-header h1 { font-size: 3rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem; }
+        .page-header p { font-size: 1.2rem; color: var(--text-muted); }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* Enhanced Course Cards */
+        .enhanced-course-card {
+            background: white; border-radius: 16px; overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; cursor: pointer; display: flex; flex-direction: column; height: 100%;
+        }
+        .enhanced-course-card:hover {
+            transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: rgba(249, 115, 22, 0.3);
+        }
+        .card-img-wrapper { position: relative; width: 100%; padding-top: 56.25%; background: var(--text-main); }
+        .card-img-wrapper img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-bottom: 1px solid rgba(0,0,0,0.05);}
+        .card-placeholder { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:flex; align-items:center; justify-content:center; color:white; font-size: 2.5rem; font-weight:bold; }
+        .badge-level { position: absolute; top: 1rem; left: 1rem; background: rgba(255, 255, 255, 0.9); color: var(--text-main); padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; backdrop-filter: blur(4px); }
+        .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+        .category-text { color: var(--text-muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+        .enhanced-course-card h3 { font-size: 1.15rem; line-height: 1.4; color: var(--text-main); margin-bottom: 0.5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .instructor-text { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; flex: 1; }
+        .card-footer { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .rating-box { display: flex; align-items: center; gap: 0.25rem; font-size: 0.9rem; font-weight: 600; color: #b4690e; }
+        .rating-box span.count { color: var(--text-muted); font-weight: 400; font-size: 0.8rem; }
+        .price-tag { font-weight: 700; font-size: 1.1rem; color: var(--text-main); }
+
+        .cat-1 { background: linear-gradient(135deg, #0ea5e9, #2563eb); }
+        .cat-2 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .cat-3 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+        .cat-4 { background: linear-gradient(135deg, #10b981, #059669); }
+        .cat-5 { background: linear-gradient(135deg, #ef4444, #dc2626); }
+    </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<header class="navbar">
-    <h1 class="logo">LearnHub</h1>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="courses.html">Courses</a>
-        <a href="#">About</a>
-        <a href="login.html" class="login">Login</a>
-    </nav>
-</header>
+<div id="header-placeholder"></div>
 
-<!-- Courses Page -->
 <section class="courses-page">
-    <h2>All Courses</h2>
+    <div class="page-header">
+        <h1>Explore All Courses</h1>
+        <p>Advance your career with expertly crafted learning paths.</p>
+    </div>
 
-    <div class="course-container">
-
-        <div class="course-card">
-            <img src="download (1).png">
-            <h3>Java Programming</h3>
-            <p>Beginner to Advanced</p>
-            <span> 4.8</span>
+    <div class="course-grid">
+        <!-- 1 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=java'">
+            <div class="card-img-wrapper">
+                <img src="assets/images/java-course.png" alt="Java">
+                <span class="badge-level">All Levels</span>
+            </div>
+            <div class="card-body">
+                <span class="category-text">Software Engineering</span>
+                <h3>Java Programming Masterclass</h3>
+                <p class="instructor-text">Dr. Michael Rivers</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.8</div><div class="price-tag">$49.99</div></div>
+            </div>
         </div>
 
-        <div class="course-card">
-            <img src="download (2).png">
-            <h3>Web Development</h3>
-            <p>HTML, CSS, JavaScript</p>
-            <span> 4.7</span>
+        <!-- 2 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=web'">
+            <div class="card-img-wrapper">
+                <img src="assets/images/web-course.png" alt="Web">
+                <span class="badge-level">Beginner</span>
+            </div>
+            <div class="card-body">
+                <span class="category-text">Web Development</span>
+                <h3>Full Stack Web Development (MERN)</h3>
+                <p class="instructor-text">Sarah Jenkins</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.9</div><div class="price-tag">$59.99</div></div>
+            </div>
         </div>
 
-        <div class="course-card">
-            <img src="download (3).png">
-            <h3>Data Structures</h3>
-            <p>DSA for Interviews</p>
-            <span> 4.9</span>
+        <!-- 3 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=dsa'">
+            <div class="card-img-wrapper">
+                <img src="assets/images/dsa-course.png" alt="DSA">
+                <span class="badge-level">Intermediate</span>
+            </div>
+            <div class="card-body">
+                <span class="category-text">Computer Science</span>
+                <h3>DS & Algorithms: Interview Prep</h3>
+                <p class="instructor-text">Alex De Leon</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.7</div><div class="price-tag">$44.99</div></div>
+            </div>
         </div>
 
-        <div class="course-card">
-            <img src="download (2).jpg">
-            <h3>Python for Data Science</h3>
-            <p>Beginner Friendly</p>
-            <span> 4.6</span>
+        <!-- 4 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=python-ml'">
+            <div class="card-img-wrapper cat-1"><div class="card-placeholder">Python</div><span class="badge-level">Advanced</span></div>
+            <div class="card-body">
+                <span class="category-text">Data Science</span>
+                <h3>Advanced Python & Machine Learning</h3>
+                <p class="instructor-text">Dr. Emily Chen</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.8</div><div class="price-tag">$64.99</div></div>
+            </div>
         </div>
 
+        <!-- 5 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=aws-cloud'">
+            <div class="card-img-wrapper cat-2"><div class="card-placeholder">AWS</div><span class="badge-level">Intermediate</span></div>
+            <div class="card-body">
+                <span class="category-text">Cloud Computing</span>
+                <h3>Cloud Computing with AWS</h3>
+                <p class="instructor-text">James Wilson</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.9</div><div class="price-tag">$49.99</div></div>
+            </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=react-native'">
+            <div class="card-img-wrapper cat-3"><div class="card-placeholder">Mobile</div><span class="badge-level">All Levels</span></div>
+            <div class="card-body">
+                <span class="category-text">Mobile Development</span>
+                <h3>Mobile Dev with React Native</h3>
+                <p class="instructor-text">Carlos Gomez</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.6</div><div class="price-tag">$54.99</div></div>
+            </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=uiux-design'">
+            <div class="card-img-wrapper cat-4"><div class="card-placeholder">UI/UX</div><span class="badge-level">Beginner</span></div>
+            <div class="card-body">
+                <span class="category-text">Design</span>
+                <h3>UI/UX Design with Figma</h3>
+                <p class="instructor-text">Nina Patel</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.9</div><div class="price-tag">$39.99</div></div>
+            </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=cybersecurity'">
+            <div class="card-img-wrapper cat-5"><div class="card-placeholder">Security</div><span class="badge-level">Intermediate</span></div>
+            <div class="card-body">
+                <span class="category-text">Security</span>
+                <h3>Ethical Hacking & Cyber Security</h3>
+                <p class="instructor-text">Marcus Black</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.8</div><div class="price-tag">$69.99</div></div>
+            </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=devops'">
+            <div class="card-img-wrapper cat-1"><div class="card-placeholder">DevOps</div><span class="badge-level">Advanced</span></div>
+            <div class="card-body">
+                <span class="category-text">DevOps</span>
+                <h3>DevOps Engineering (Docker & K8s)</h3>
+                <p class="instructor-text">David Lee</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.9</div><div class="price-tag">$59.99</div></div>
+            </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=blockchain'">
+            <div class="card-img-wrapper cat-3"><div class="card-placeholder">Web3</div><span class="badge-level">Advanced</span></div>
+            <div class="card-body">
+                <span class="category-text">Blockchain</span>
+                <h3>Blockchain & Web3 Development</h3>
+                <p class="instructor-text">Elena Rostova</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.7</div><div class="price-tag">$79.99</div></div>
+            </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=sql-db'">
+            <div class="card-img-wrapper cat-2"><div class="card-placeholder">SQL</div><span class="badge-level">Beginner</span></div>
+            <div class="card-body">
+                <span class="category-text">Databases</span>
+                <h3>SQL & Database Design</h3>
+                <p class="instructor-text">Omar Tariq</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.8</div><div class="price-tag">$34.99</div></div>
+            </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=csharp-dotnet'">
+            <div class="card-img-wrapper cat-4"><div class="card-placeholder">.NET</div><span class="badge-level">Intermediate</span></div>
+            <div class="card-body">
+                <span class="category-text">Software Engineering</span>
+                <h3>Mastering C# & .NET</h3>
+                <p class="instructor-text">Rachel Green</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.8</div><div class="price-tag">$49.99</div></div>
+            </div>
+        </div>
+
+        <!-- 13 -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=ai-deeplearning'">
+            <div class="card-img-wrapper cat-5"><div class="card-placeholder">AI</div><span class="badge-level">Advanced</span></div>
+            <div class="card-body">
+                <span class="category-text">Data Science</span>
+                <h3>AI and Deep Learning</h3>
+                <p class="instructor-text">Dr. Alan Turing Jr</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.9</div><div class="price-tag">$89.99</div></div>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Footer -->
-<footer>
-    <p> 2025 LearnHub. All rights reserved.</p>
-</footer>
+<div id="footer-placeholder"></div>
 
 </body>
 </html>
+

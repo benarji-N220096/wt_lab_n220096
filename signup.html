@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join LearnHub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/main.js" defer></script>
+</head>
+<body class="auth-body">
+
+<div class="glass-container" style="max-width: 500px;">
+    <div id="auth-logo" style="margin-bottom: 2rem;">
+        <h1 class="logo" style="cursor: pointer;" onclick="window.location.href='index.html'">LearnHub</h1>
+    </div>
+    
+    <h2>Access <span style="color:var(--primary-color)">Excellence</span></h2>
+    <p style="color:var(--text-muted); margin-bottom:2rem;">Start your learning journey today.</p>
+    
+    <div id="error-msg" style="color: #ef4444; margin-bottom: 1rem; display: none;"></div>
+
+    <form id="signup-form">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="password" name="password" placeholder="Create Password" required>
+        
+        <button type="submit" class="btn-primary">Create Account</button>
+    </form>
+
+    <div class="auth-divider">
+        <span>or</span>
+    </div>
+
+    <button type="button" class="btn-google" onclick="window.location.href='backend/google-login.php'">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style="width: 24px; height: 24px;">
+        Sign up with Google
+    </button>
+
+    <div class="auth-links">
+        Already registered? <a href="signin.html">Log In</a>
+    </div>
+</div>
+
+<script>
+document.getElementById('signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const errorMsg = document.getElementById('error-msg');
+    
+    fetch('backend/signup_action.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Registration successful! Redirecting to login.');
+            window.location.href = 'signin.html';
+        } else {
+            errorMsg.innerText = data.message;
+            errorMsg.style.display = 'block';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        errorMsg.innerText = 'Something went wrong. Please try again.';
+        errorMsg.style.display = 'block';
+    });
+});
+</script>
+
+</body>
+</html>

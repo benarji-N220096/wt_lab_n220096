@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "2b310b96de868ea2026bd106112b0584",
+=======
+    "content-hash": "741e16656af53ec3b105f50a7ecdb6db",
+>>>>>>> d40f4b0 (feat: Major project overhaul, MongoDB integration, and dynamic Learning Dashboard)
     "packages": [
         {
             "name": "firebase/php-jwt",
@@ -140,6 +144,7 @@
         },
         {
             "name": "google/apiclient-services",
+<<<<<<< HEAD
             "version": "v0.434.0",
             "source": {
                 "type": "git",
@@ -150,6 +155,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/65550d5fd5c468badd75db9ec73c2c187470a00d",
                 "reference": "65550d5fd5c468badd75db9ec73c2c187470a00d",
+=======
+            "version": "v0.433.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/googleapis/google-api-php-client-services.git",
+                "reference": "feb9c13e54457a6f5e157b7eae78b41566df43b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/feb9c13e54457a6f5e157b7eae78b41566df43b5",
+                "reference": "feb9c13e54457a6f5e157b7eae78b41566df43b5",
+>>>>>>> d40f4b0 (feat: Major project overhaul, MongoDB integration, and dynamic Learning Dashboard)
                 "shasum": ""
             },
             "require": {
@@ -178,9 +195,15 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.434.0"
             },
             "time": "2026-02-18T01:00:35+00:00"
+=======
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.433.0"
+            },
+            "time": "2026-02-16T01:42:26+00:00"
+>>>>>>> d40f4b0 (feat: Major project overhaul, MongoDB integration, and dynamic Learning Dashboard)
         },
         {
             "name": "google/auth",
@@ -245,6 +268,7 @@
             "time": "2026-01-08T21:33:57+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "graham-campbell/result-type",
             "version": "v1.1.4",
             "source": {
@@ -307,6 +331,8 @@
             "time": "2025-12-27T19:43:20+00:00"
         },
         {
+=======
+>>>>>>> d40f4b0 (feat: Major project overhaul, MongoDB integration, and dynamic Learning Dashboard)
             "name": "guzzlehttp/guzzle",
             "version": "7.10.0",
             "source": {
@@ -931,6 +957,7 @@
             "time": "2020-10-15T08:29:30+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "phpoption/phpoption",
             "version": "1.9.5",
             "source": {
@@ -1006,6 +1033,8 @@
             "time": "2025-12-27T19:41:33+00:00"
         },
         {
+=======
+>>>>>>> d40f4b0 (feat: Major project overhaul, MongoDB integration, and dynamic Learning Dashboard)
             "name": "phpseclib/phpseclib",
             "version": "3.0.49",
             "source": {
@@ -1486,6 +1515,7 @@
             "time": "2024-09-25T14:21:43+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/polyfill-ctype",
             "version": "v1.33.0",
             "source": {
@@ -1738,6 +1768,8 @@
             "time": "2025-01-02T08:10:11+00:00"
         },
         {
+=======
+>>>>>>> d40f4b0 (feat: Major project overhaul, MongoDB integration, and dynamic Learning Dashboard)
             "name": "symfony/polyfill-php85",
             "version": "v1.33.0",
             "source": {
@@ -1816,6 +1848,7 @@
                 }
             ],
             "time": "2025-06-23T16:12:55+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "vlucas/phpdotenv",
@@ -1900,6 +1933,8 @@
                 }
             ],
             "time": "2025-12-27T19:49:13+00:00"
+=======
+>>>>>>> d40f4b0 (feat: Major project overhaul, MongoDB integration, and dynamic Learning Dashboard)
         }
     ],
     "packages-dev": [],
