@@ -1,4 +1,0 @@
-my name is benarji 
-iam studying E2 CSE in rgukt
-iam doing tasks given by vasu sir
-New line added using fwrite().

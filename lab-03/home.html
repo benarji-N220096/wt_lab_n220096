@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to LearnHub | Your Learning Journey Begins</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .landing-hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .animated-blobs {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-20%, -20%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        .landing-card {
+            z-index: 10;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 5rem;
+            border-radius: 40px;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .landing-card h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #f97316, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .landing-card p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .landing-btns {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .btn-landing {
+            padding: 1.25rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-signup {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            box-shadow: 0 20px 40px -10px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn-signup:hover {
+            transform: translateY(-5px);
+            background: var(--primary-hover);
+        }
+
+        .btn-signin {
+            background: white;
+            color: var(--text-main);
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-signin:hover {
+            background: #f8fafc;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+<section class="landing-hero">
+    <div class="animated-blobs">
+        <div class="blob" style="top: -10%; left: -10%;"></div>
+        <div class="blob" style="bottom: -10%; right: -10%; animation-delay: -10s;"></div>
+    </div>
+
+    <div class="landing-card">
+        <h1>LearnHub</h1>
+        <p>Your journey to technological mastery starts here. Join thousands of students today.</p>
+        
+        <div class="landing-btns">
+            <a href="signup.html" class="btn-landing btn-signup">Sign Up Now</a>
+            <a href="signin.html" class="btn-landing btn-signin">Sign In</a>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

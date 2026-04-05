@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details | LearnHub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/main.js" defer></script>
+    <style>
+        .course-page-wrapper {
+            position: relative; min-height: 100vh; overflow: hidden; background-color: #f8fafc;
+        }
+        
+        .course-watermark {
+            position: absolute; top: 10%; right: -5%; width: 800px; height: 800px;
+            background-size: contain; background-repeat: no-repeat; background-position: center;
+            opacity: 0.04; z-index: 1; pointer-events: none;
+        }
+
+        .course-container { position: relative; padding: 150px 5% 100px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; z-index: 10; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+        .syllabus { margin-top: 3rem; background: white; padding: 2.5rem; border-radius: 20px; border: 1px solid var(--glass-border); box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05); }
+        .syllabus ul { margin-top: 1.5rem; padding-left: 1.2rem; color: var(--text-muted); }
+        .syllabus li { margin-bottom: 1rem; font-size: 1.05rem; }
+        
+        .course-sidebar { 
+            position: sticky; top: 120px; background: white; padding: 2.5rem; border-radius: 24px; 
+            border: 1px solid var(--glass-border); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08); height: fit-content; text-align: center; 
+        }
+
+        .hero-course-img { width: 100%; height: 350px; object-fit: cover; border-radius: 20px; margin-bottom: 2.5rem; box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<div class="course-page-wrapper">
+    <!-- The huge watermark image replaces text completely -->
+    <div id="course-watermark" class="course-watermark"></div>
+    
+    <div class="course-container">
+        <div class="course-main">
+            <img id="course-hero-img" src="" alt="Course Cover" class="hero-course-img">
+            <h1 id="course-title" style="font-size: 3rem; line-height: 1.2; margin-bottom: 1rem; color: var(--text-main);">Course Title</h1>
+            <p id="course-desc" style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6;">Course description.</p>
+            
+            <h3 style="color: var(--text-main);">What You'll Learn:</h3>
+            <div id="tech-stack" class="tech-stack"></div>
+
+            <div class="syllabus">
+                <h3 style="font-size: 1.5rem;">Core Curriculum Overview</h3>
+                <ul id="syllabus-list"></ul>
+            </div>
+        </div>
+
+        <div class="course-sidebar">
+            <h2 id="course-price" style="font-size: 3rem; font-weight: 800; color: var(--primary-color); margin-bottom: 0.5rem;">$0.00</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-muted); font-size: 0.95rem;">Lifetime access starting today.</p>
+            <button class="btn-primary" style="width: 100%; padding: 1.2rem; margin-bottom: 2rem; font-size: 1.15rem; box-shadow: 0 10px 20px -5px rgba(249, 115, 22, 0.4);">Enroll Now</button>
+            
+            <div style="border-top: 1px solid rgba(0,0,0,0.08); padding-top: 2rem; text-align: left;">
+                <p style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main);">Industry Leader</p>
+                <p id="mentor-name" style="color: var(--primary-color); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">Mentor Name</p>
+                <p id="mentor-qual" style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.4;">Qualifications</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script>
+// The 9 Requested Courses System
+const courseData = {
+    'java': {
+        title: 'Java Programming Masterclass',
+        desc: 'Master Core Java, algorithms, object-oriented programming, and modern backend logic with Spring Boot.',
+        tech: ['Java 21', 'Spring Boot', 'OOP', 'JPA', 'Microservices'],
+        syllabus: ['Basic Syntax & Data Types', 'Object-Oriented Architecture', 'Collections Framework', 'Multithreading & Concurrency', 'Building REST APIs with Spring'],
+        price: '$49.99', mentor: 'Dr. Michael Rivers', qual: 'Ex-Google Distributed Systems Architect',
+        img: 'assets/images/courses/java-thumb.svg', watermark: 'assets/images/courses/java-logo.svg'
+    },
+    'dsa': {
+        title: 'Data Structures & Algorithms',
+        desc: 'The defining computer science course. Learn to solve complex problems and crack coding interviews at top tech companies.',
+        tech: ['Big O Notation', 'Graphs', 'Trees', 'Dynamic Programming'],
+        syllabus: ['Arrays and HashMaps', 'Linked Lists and Pointers', 'Trees and BSTs', 'Graph Traversal Algorithms', 'Advanced Dynamic Programming'],
+        price: '$44.99', mentor: 'Alex De Leon', qual: 'Principal Software Engineer at AWS',
+        img: 'assets/images/courses/dsa-thumb.svg', watermark: 'assets/images/courses/dsa-logo.svg'
+    },
+    'python': {
+        title: 'Python for Beginners to Advanced',
+        desc: 'Learn the most versatile language on the planet. Covering everything from automation scripts to web scraping.',
+        tech: ['Python 3.12', 'Automation', 'Flask', 'Pandas', 'Web Scraping'],
+        syllabus: ['Python Fundamentals', 'Functions and Modules', 'File Handling & Regex', 'Web Scraping with BeautifulSoup', 'Building APIs with Flask'],
+        price: '$39.99', mentor: 'Elena Rostova', qual: 'Senior Backend Python Developer',
+        img: 'assets/images/courses/python-thumb.svg', watermark: 'assets/images/courses/python-logo.svg'
+    },
+    'mern': {
+        title: 'MERN Stack Web Development',
+        desc: 'Create massive, scalable full-stack web applications entirely in JavaScript using MongoDB, Express, React, and Node.',
+        tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Redux Toolkit'],
+        syllabus: ['Advanced JavaScript ES6+', 'React Component Architecture', 'Node & Express Servers', 'MongoDB Aggregations', 'Full Stack Authentication (JWT)'],
+        price: '$59.99', mentor: 'Sarah Jenkins', qual: 'Microsoft Frontend Lead',
+        img: 'assets/images/courses/mern-thumb.svg', watermark: 'assets/images/courses/mern-logo.svg'
+    },
+    'security': {
+        title: 'Ethical Hacking & Cyber Security',
+        desc: 'Protect networks and stop cyber threats before they happen. Think like a hacker to build impenetrable systems.',
+        tech: ['Kali Linux', 'Penetration Testing', 'Cryptography', 'Wireshark'],
+        syllabus: ['Footprinting and Reconnaissance', 'Network Scanning', 'System Hacking & Malware', 'Web Application Penetration', 'Cryptography Fundamentals'],
+        price: '$69.99', mentor: 'Marcus Black', qual: 'Offensive Security Certified Professional',
+        img: 'assets/images/courses/security-thumb.svg', watermark: 'assets/images/courses/security-logo.svg'
+    },
+    'cpp': {
+        title: 'Mastering Modern C++',
+        desc: 'Build highly performant game engines, operating systems, and rapid trading software using C++ standards.',
+        tech: ['C++ 20', 'Memory Management', 'Pointers', 'STL', 'Multithreading'],
+        syllabus: ['Pointers and Memory Allocation', 'Standard Template Library (STL)', 'Object-Oriented C++', 'Smart Pointers', 'Template Metaprogramming'],
+        price: '$49.99', mentor: 'Dr. Alan Turing Jr', qual: 'C++ Systems Programmer',
+        img: 'assets/images/courses/cpp-thumb.svg', watermark: 'assets/images/courses/cpp-logo.svg'
+    },
+    'genai': {
+        title: 'Generative AI and Large Language Models',
+        desc: 'The bleeding edge of tech. Learn how Transformers work and build applications relying on LLMs like ChatGPT and Claude.',
+        tech: ['Transformers', 'LangChain', 'Prompt Engineering', 'Vector Databases'],
+        syllabus: ['Fundamentals of Gen AI', 'Prompt Engineering Mastery', 'Working with Vector DBs (Pinecone)', 'Building Apps with Langchain', 'Fine-tuning LLMs'],
+        price: '$89.99', mentor: 'Dr. Emily Chen', qual: 'Lead AI Researcher',
+        img: 'assets/images/courses/genai-thumb.svg', watermark: 'assets/images/courses/genai-logo.svg'
+    },
+    'data': {
+        title: 'Data Science and Analytics Bootcamp',
+        desc: 'Extract immense value from raw data. Learn statistical models, data cleaning, and compelling visual storytelling.',
+        tech: ['Jupyter', 'Statistics', 'Matplotlib', 'SQL', 'Seaborn'],
+        syllabus: ['Statistical Foundations', 'Data Cleaning with Pandas', 'Relational Databases (SQL)', 'Data Visualization', 'A/B Testing & Analysis'],
+        price: '$54.99', mentor: 'Nina Patel', qual: 'Head Data Analyst at Netflix',
+        img: 'assets/images/courses/data-thumb.svg', watermark: 'assets/images/courses/data-logo.svg'
+    },
+    'cloud': {
+        title: 'Cloud Computing with AWS',
+        desc: 'Design fault-tolerant, highly available cloud infrastructures. Prepare completely for the AWS Solutions Architect exam.',
+        tech: ['AWS EC2', 'S3', 'Lambda', 'Docker', 'VPC'],
+        syllabus: ['Cloud Principles', 'Compute & Virtualization', 'Serverless execution with Lambda', 'Networking (VPC & Route53)', 'Security & IAM Configurations'],
+        price: '$49.99', mentor: 'James Wilson', qual: 'AWS Certified Solutions Architect',
+        img: 'assets/images/courses/cloud-thumb.svg', watermark: 'assets/images/courses/cloud-logo.svg'
+    }
+};
+
+window.onload = function() {
+    setTimeout(() => {
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('course') || 'java';
+        const data = courseData[code];
+
+        if (data) {
+            document.getElementById('course-title').innerText = data.title;
+            document.getElementById('course-desc').innerText = data.desc;
+            document.getElementById('course-price').innerText = data.price;
+            document.getElementById('mentor-name').innerText = data.mentor;
+            document.getElementById('mentor-qual').innerText = data.qual;
+            
+            // Set Watermark Logo via Background Image
+            document.getElementById('course-watermark').style.backgroundImage = `url('${data.watermark}')`;
+
+            // Set main hero image
+            const imgEl = document.getElementById('course-hero-img');
+            imgEl.src = data.img;
+
+            const techDiv = document.getElementById('tech-stack');
+            data.tech.forEach(t => {
+                const s = document.createElement('span');
+                s.className = 'tech-badge';
+                s.innerText = t;
+                techDiv.appendChild(s);
+            });
+
+            const syll = document.getElementById('syllabus-list');
+            data.syllabus.forEach(item => {
+                const li = document.createElement('li');
+                li.innerText = item;
+                syll.appendChild(li);
+            });
+            
+            document.title = data.title + ' | LearnHub';
+        }
+    }, 100);
+}
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Platform</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/main.js" defer></script>
+    <style>
+        /* Modern Dashboard Specific Styles */
+        body { background-color: #f8f9fa; }
+        
+        .dashboard-container { max-width: 1200px; margin: 100px auto 40px; padding: 0 5%; }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 24px; padding: 3rem 4rem; color: white; display: flex;
+            justify-content: space-between; align-items: center; box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.4);
+            margin-bottom: 3rem; position: relative; overflow: hidden;
+        }
+        .welcome-banner::before {
+            content: ''; position: absolute; top: -50%; right: -10%; width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, transparent 70%); border-radius: 50%;
+        }
+        .welcome-text h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .welcome-text p { font-size: 1.1rem; opacity: 0.9; color: #cbd5e1; }
+
+        /* Stats Row */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+        .stat-card {
+            background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex; align-items: center; gap: 1.5rem; border: 1px solid rgba(0,0,0,0.03); transition: transform 0.3s ease;
+        }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05); }
+        .stat-icon { width: 60px; height: 60px; border-radius: 16px; background: rgba(249, 115, 22, 0.1); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+        .stat-info h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 0.2rem; }
+        .stat-info p { color: var(--text-muted); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
+
+        .section-title { font-size: 1.5rem; font-weight: 700; color: var(--text-main); margin-bottom: 1.5rem; }
+        
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem; margin-bottom: 4rem; }
+
+        /* Enhanced Course Cards */
+        .enhanced-course-card {
+            background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05); transition: all 0.3s; cursor: pointer; display: flex; flex-direction: column; height: 100%;
+        }
+        .enhanced-course-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-color: rgba(249, 115, 22, 0.3); }
+        .card-img-wrapper { position: relative; width: 100%; padding-top: 56.25%; background: var(--text-main); }
+        .card-img-wrapper img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .badge-level { position: absolute; top: 1rem; left: 1rem; background: rgba(255, 255, 255, 0.95); color: var(--text-main); padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; }
+        .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+        .category-text { color: var(--text-muted); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .enhanced-course-card h3 { font-size: 1.15rem; line-height: 1.4; color: var(--text-main); margin-bottom: 0.5rem; }
+        .instructor-text { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; flex: 1; }
+        .card-footer { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .rating-box { display: flex; align-items: center; gap: 0.25rem; font-size: 0.9rem; font-weight: 600; color: #b4690e; }
+        .price-tag { font-weight: 800; font-size: 1.1rem; color: var(--text-main); }
+
+        /* Mentors Layout */
+        .instructor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+        .instructor-profile { background: white; border-radius: 20px; padding: 2rem; text-align: center; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: transform 0.3s; }
+        .instructor-profile:hover { transform: translateY(-5px); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.05); }
+        .avatar { width: 90px; height: 90px; border-radius: 50%; background: #e2e8f0; margin: 0 auto 1.25rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; color: #94a3b8; }
+        
+    </style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<div class="dashboard-container">
+    
+    <div class="welcome-banner">
+        <div class="welcome-text">
+            <h1>Welcome to Hotel Booking Platform!</h1>
+            <p>Your journey to technical mastery continues. Explore 9 highly-rated curriculums below.</p>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon">ðŸ“š</div><div class="stat-info"><h3>9</h3><p>Active Courses</p></div></div>
+        <div class="stat-card"><div class="stat-icon">ðŸ‘¨â€ðŸ«</div><div class="stat-info"><h3>9</h3><p>Industry Leaders</p></div></div>
+        <div class="stat-card"><div class="stat-icon">ðŸŽ“</div><div class="stat-info"><h3>0</h3><p>Certificates Earned</p></div></div>
+    </div>
+
+    <!-- The 9 Requested Courses -->
+    <h2 class="section-title">Professional Certification Tracks</h2>
+    <div class="course-grid">
+        
+        <!-- Java -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=java'">
+            <div class="card-img-wrapper">
+                <img src="assets/images/courses/java-thumb.svg" alt="Java">
+                <span class="badge-level">All Levels</span>
+            </div>
+            <div class="card-body">
+                <span class="category-text">Software Engineering</span>
+                <h3>Java Programming Masterclass</h3>
+                <p class="instructor-text">Dr. Michael Rivers</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.8 <span class="count">(12k)</span></div><div class="price-tag">$49.99</div></div>
+            </div>
+        </div>
+
+        <!-- DSA -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=dsa'">
+            <div class="card-img-wrapper">
+                <img src="assets/images/courses/dsa-thumb.svg" alt="Data Structures">
+                <span class="badge-level">Intermediate</span>
+            </div>
+            <div class="card-body">
+                <span class="category-text">Computer Science</span>
+                <h3>Data Structures & Algorithms</h3>
+                <p class="instructor-text">Alex De Leon</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.9 <span class="count">(9k)</span></div><div class="price-tag">$44.99</div></div>
+            </div>
+        </div>
+
+        <!-- Python -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=python'">
+            <div class="card-img-wrapper">
+                <img src="assets/images/courses/python-thumb.svg" alt="Python">
+                <span class="badge-level">Beginner</span>
+            </div>
+            <div class="card-body">
+                <span class="category-text">Programming</span>
+                <h3>Python for Beginners to Advanced</h3>
+                <p class="instructor-text">Elena Rostova</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.9 <span class="count">(15k)</span></div><div class="price-tag">$39.99</div></div>
+            </div>
+        </div>
+
+        <!-- MERN -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=mern'">
+            <div class="card-img-wrapper">
+                <img src="assets/images/courses/mern-thumb.svg" alt="MERN">
+                <span class="badge-level">Intermediate</span>
+            </div>
+            <div class="card-body">
+                <span class="category-text">Web Development</span>
+                <h3>MERN Stack Web Development</h3>
+                <p class="instructor-text">Sarah Jenkins</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.8 <span class="count">(8k)</span></div><div class="price-tag">$59.99</div></div>
+            </div>
+        </div>
+
+        <!-- Cyber Security -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=security'">
+            <div class="card-img-wrapper">
+                <img src="assets/images/courses/security-thumb.svg" alt="Cyber Security">
+                <span class="badge-level">Advanced</span>
+            </div>
+            <div class="card-body">
+                <span class="category-text">Security</span>
+                <h3>Ethical Hacking & Cyber Security</h3>
+                <p class="instructor-text">Marcus Black</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.8 <span class="count">(6k)</span></div><div class="price-tag">$69.99</div></div>
+            </div>
+        </div>
+
+        <!-- C++ -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=cpp'">
+            <div class="card-img-wrapper">
+                <img src="assets/images/courses/cpp-thumb.svg" alt="C++">
+                <span class="badge-level">All Levels</span>
+            </div>
+            <div class="card-body">
+                <span class="category-text">Software Engineering</span>
+                <h3>Mastering Modern C++</h3>
+                <p class="instructor-text">Dr. Alan Turing Jr</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.7 <span class="count">(4k)</span></div><div class="price-tag">$49.99</div></div>
+            </div>
+        </div>
+
+        <!-- Gen AI -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=genai'">
+            <div class="card-img-wrapper">
+                <img src="assets/images/courses/genai-thumb.svg" alt="Gen AI">
+                <span class="badge-level">Advanced</span>
+            </div>
+            <div class="card-body">
+                <span class="category-text">Artificial Intelligence</span>
+                <h3>Generative AI and Large Language Models</h3>
+                <p class="instructor-text">Dr. Emily Chen</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.9 <span class="count">(11k)</span></div><div class="price-tag">$89.99</div></div>
+            </div>
+        </div>
+
+        <!-- Data Science -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=data'">
+            <div class="card-img-wrapper">
+                <img src="assets/images/courses/data-thumb.svg" alt="Data Science">
+                <span class="badge-level">Intermediate</span>
+            </div>
+            <div class="card-body">
+                <span class="category-text">Data Science</span>
+                <h3>Data Science and Analytics Bootcamp</h3>
+                <p class="instructor-text">Nina Patel</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.8 <span class="count">(8k)</span></div><div class="price-tag">$54.99</div></div>
+            </div>
+        </div>
+
+        <!-- Cloud Computing -->
+        <div class="enhanced-course-card" onclick="window.location.href='course_detail.html?course=cloud'">
+            <div class="card-img-wrapper">
+                <img src="assets/images/courses/cloud-thumb.svg" alt="Cloud">
+                <span class="badge-level">Intermediate</span>
+            </div>
+            <div class="card-body">
+                <span class="category-text">Cloud Architecture</span>
+                <h3>Cloud Computing with AWS</h3>
+                <p class="instructor-text">James Wilson</p>
+                <div class="card-footer"><div class="rating-box">â­ 4.9 <span class="count">(14k)</span></div><div class="price-tag">$49.99</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Expert Instructors -->
+    <h2 class="section-title">Top Industry Leaders</h2>
+    <div class="instructor-grid">
+        <div class="instructor-profile">
+            <div class="avatar" style="background:#fce7f3; color:#db2777;">EC</div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.25rem;">Dr. Emily Chen</h3>
+            <p style="color:var(--primary-color); font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem;">Lead AI Researcher</p>
+            <p style="color:var(--text-muted); font-size: 0.9rem;">Spearheading Generative AI technologies and pushing the boundaries of machine learning.</p>
+        </div>
+        <div class="instructor-profile">
+            <div class="avatar" style="background:#e0e7ff; color:#4f46e5;">MR</div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.25rem;">Dr. Michael Rivers</h3>
+            <p style="color:var(--primary-color); font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem;">Ex-Google Architect</p>
+            <p style="color:var(--text-muted); font-size: 0.9rem;">Specializing in scalable distributed systems and robust Java application architecture.</p>
+        </div>
+        <div class="instructor-profile">
+            <div class="avatar" style="background:#dcfce7; color:#16a34a;">SJ</div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.25rem;">Sarah Jenkins</h3>
+            <p style="color:var(--primary-color); font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem;">Microsoft Frontend Lead</p>
+            <p style="color:var(--text-muted); font-size: 0.9rem;">Passionate about teaching modern JavaScript, accessible UI/UX, and component-driven design.</p>
+        </div>
+        <div class="instructor-profile">
+            <div class="avatar" style="background:#fee2e2; color:#dc2626;">MB</div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.25rem;">Marcus Black</h3>
+            <p style="color:var(--primary-color); font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem;">Offensive Security Certified</p>
+            <p style="color:var(--text-muted); font-size: 0.9rem;">An elite white-hat ethical hacker focused on strengthening cloud and network vulnerabilities.</p>
+        </div>
+    </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>
+
